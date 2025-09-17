@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Frases para Viagem - 4 Idiomas</title>
+    <title>Guia de Frases para Viagem - Áudio Funcional</title>
     <style>
         * {
             box-sizing: border-box;
@@ -19,7 +19,7 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
@@ -51,50 +51,14 @@
             margin-bottom: 15px;
             text-align: center;
         }
-        .instructions-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .instruction-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            flex: 1;
-            min-width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .instruction-card h3 {
-            color: #2c5fa8;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .instruction-card h3 i {
-            margin-right: 10px;
-        }
-        .instruction-card ol {
-            padding-left: 20px;
-        }
-        .instruction-card li {
-            margin-bottom: 8px;
-        }
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
+        .phrases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             padding: 25px;
-            justify-content: center;
         }
         .category {
-            flex: 1;
-            min-width: 350px;
-            max-width: 600px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
         }
         .category-title {
             background: #2c5fa8;
@@ -111,24 +75,24 @@
             font-size: 24px;
         }
         .phrase-card {
-            background: white;
+            background: #f9f9f9;
             border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .phrase-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
         .portuguese {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             color: #2c5fa8;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #ccc;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #ccc;
         }
         .translation {
             display: flex;
@@ -137,35 +101,35 @@
         .language {
             text-align: center;
             flex: 1;
-            padding: 0 5px;
+            padding: 0 10px;
         }
         .language-name {
-            font-size: 14px;
+            font-size: 16px;
             color: #555;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: bold;
         }
         .qr-code {
-            width: 90px;
-            height: 90px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto;
             display: block;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 5px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 8px;
             background: white;
-            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .audio-btn {
             display: block;
-            margin: 8px auto 0;
-            padding: 6px 12px;
+            margin: 10px auto 0;
+            padding: 8px 15px;
             background: #2c5fa8;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             transition: background 0.3s;
         }
         .audio-btn:hover {
@@ -199,20 +163,14 @@
             transform: translateY(-2px);
         }
         @media (max-width: 768px) {
-            .categories {
-                flex-direction: column;
-            }
-            .category {
-                min-width: 100%;
+            .phrases-container {
+                grid-template-columns: 1fr;
             }
             .translation {
                 flex-direction: column;
             }
             .language {
-                margin-bottom: 15px;
-            }
-            .instruction-card {
-                min-width: 100%;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -221,47 +179,22 @@
     <div class="container">
         <header>
             <h1>Guia de Frases para Viagem Internacional</h1>
-            <p class="subtitle">QR Codes com reprodução automática de áudio - Português, Inglês, Alemão, Francês e Espanhol</p>
+            <p class="subtitle">QR Codes com reprodução automática de áudio</p>
         </header>
 
         <div class="instructions">
             <h2>Como usar este guia</h2>
-            <div class="instructions-content">
-                <div class="instruction-card">
-                    <h3><i>📱</i> Usando os QR Codes</h3>
-                    <ol>
-                        <li>Abra o aplicativo de câmera do seu celular</li>
-                        <li>Aponte para o QR code do idioma desejado</li>
-                        <li>Toque na notificação que aparecer</li>
-                        <li>A frase será reproduzida automaticamente em áudio</li>
-                    </ol>
-                </div>
-                <div class="instruction-card">
-                    <h3><i>🔊</i> Reprodução de Áudio</h3>
-                    <ol>
-                        <li>Se o áudio não reproduzir automaticamente, toque no botão "Ouvir Áudio"</li>
-                        <li>Ajuste o volume do seu dispositivo</li>
-                        <li>Mostre a tela para a pessoa com quem você está tentando se comunicar</li>
-                    </ol>
-                </div>
-                <div class="instruction-card">
-                    <h3><i>💡</i> Dicas Importantes</h3>
-                    <ol>
-                        <li>Mantenha o volume em um nível confortável</li>
-                        <li>Este guia funciona mesmo sem internet</li>
-                        <li>Salve esta página no seu celular para acesso rápido</li>
-                    </ol>
-                </div>
-            </div>
+            <p><strong>Para usar o áudio:</strong> Clique no botão "Ouvir Áudio" de qualquer frase. Em alguns navegadores, você precisará interagir com a página primeiro (como clicar em qualquer lugar) para que o áudio funcione.</p>
+            <p><strong>Para usar os QR codes:</strong> Aponte a câmera do seu celular para o QR code para acessar a tradução online.</p>
         </div>
 
         <button class="print-btn" onclick="window.print()">Imprimir Guia</button>
 
-        <div class="categories">
-            <!-- Cumprimentos e Educação -->
+        <div class="phrases-container">
+            <!-- Cumprimentos e Saudações -->
             <div class="category">
                 <div class="category-title">
-                    <i>👋</i> Cumprimentos e Educação
+                    <i>👋</i> Cumprimentos e Saudações
                 </div>
                 
                 <div class="phrase-card">
@@ -269,23 +202,13 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Good morning" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Good morning" alt="QR Code Inglês">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Good%20morning" alt="QR Code Inglês">
                             <button class="audio-btn" onclick="speakText('Good morning', 'en')">Ouvir Áudio</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Guten Morgen" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Guten Morgen" alt="QR Code Alemão">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Guten%20Morgen" alt="QR Code Alemão">
                             <button class="audio-btn" onclick="speakText('Guten Morgen', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Bonjour" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Bonjour" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Bonjour', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="Buenos días" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Buenos días" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('Buenos días', 'es')">Ouvir Áudio</button>
                         </div>
                     </div>
                 </div>
@@ -295,136 +218,22 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Good evening" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Good evening" alt="QR Code Inglês">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Good%20evening" alt="QR Code Inglês">
                             <button class="audio-btn" onclick="speakText('Good evening', 'en')">Ouvir Áudio</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Guten Abend" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Guten Abend" alt="QR Code Alemão">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Guten%20Abend" alt="QR Code Alemão">
                             <button class="audio-btn" onclick="speakText('Guten Abend', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Bonsoir" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Bonsoir" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Bonsoir', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="Buenas noches" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Buenas noches" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('Buenas noches', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Por favor</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Please" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Please" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Please', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Bitte" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Bitte" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Bitte', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="S'il vous plaît" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=S'il vous plaît" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('S'il vous plaît', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="Por favor" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Por favor" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('Por favor', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Obrigado(a)</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Thank you" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Thank you" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Thank you', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Danke" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Danke" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Danke', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Merci" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Merci" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Merci', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="Gracias" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Gracias" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('Gracias', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Desculpe</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Excuse me / I'm sorry" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Excuse me / I'm sorry" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Excuse me', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Entschuldigung" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Entschuldigung" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Entschuldigung', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Excusez-moi" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Excusez-moi" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Excusez-moi', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="Disculpe" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Disculpe" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('Disculpe', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Você pode falar devagar?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Can you speak slowly?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Can you speak slowly?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Can you speak slowly?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Können Sie langsam sprechen?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Können Sie langsam sprechen?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Können Sie langsam sprechen?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Pouvez-vous parler lentement?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Pouvez-vous parler lentement?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Pouvez-vous parler lentement?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Puede hablar despacio?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Puede hablar despacio?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Puede hablar despacio?', 'es')">Ouvir Áudio</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Direções e Orientação -->
+            <!-- Direções e Locomoção -->
             <div class="category">
                 <div class="category-title">
-                    <i>🧭</i> Direções e Orientação
+                    <i>🧭</i> Direções e Locomoção
                 </div>
                 
                 <div class="phrase-card">
@@ -432,127 +241,13 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Where is the bathroom?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where is the bathroom?" alt="QR Code Inglês">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where%20is%20the%20bathroom" alt="QR Code Inglês">
                             <button class="audio-btn" onclick="speakText('Where is the bathroom?', 'en')">Ouvir Áudio</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Wo ist die Toilette?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo ist die Toilette?" alt="QR Code Alemão">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo%20ist%20die%20Toilette" alt="QR Code Alemão">
                             <button class="audio-btn" onclick="speakText('Wo ist die Toilette?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Où sont les toilettes?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Où sont les toilettes?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Où sont les toilettes?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Dónde está el baño?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Dónde está el baño?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Dónde está el baño?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Pode me mostrar no mapa?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Can you show me on the map?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Can you show me on the map?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Can you show me on the map?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Können Sie mir das auf der Karte zeigen?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Können Sie mir das auf der Karte zeigen?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Können Sie mir das auf der Karte zeigen?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Pouvez-vous me montrer sur la carte?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Pouvez-vous me montrer sur la carte?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Pouvez-vous me montrer sur la carte?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Puede mostrarme en el mapa?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Puede mostrarme en el mapa?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Puede mostrarme en el mapa?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Onde está o ponto de ônibus?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Where is the bus stop?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where is the bus stop?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Where is the bus stop?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Wo ist die Bushaltestelle?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo ist die Bushaltestelle?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Wo ist die Bushaltestelle?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Où est l'arrêt de bus?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Où est l'arrêt de bus?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Où est l'arrêt de bus?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Dónde está la parada de autobús?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Dónde está la parada de autobús?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Dónde está la parada de autobús?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Onde está a estação de trem?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Where is the train station?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where is the train station?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Where is the train station?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Wo ist der Bahnhof?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo ist der Bahnhof?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Wo ist der Bahnhof?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Où est la gare?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Où est la gare?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Où est la gare?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Dónde está la estación de tren?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Dónde está la estación de tren?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Dónde está la estación de tren?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Onde está o ponto de táxi?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Where is the taxi stand?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where is the taxi stand?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Where is the taxi stand?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Wo ist der Taxistand?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo ist der Taxistand?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Wo ist der Taxistand?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Où est la station de taxi?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Où est la station de taxi?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Où est la station de taxi?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Dónde está la parada de taxi?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Dónde está la parada de taxi?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Dónde está la parada de taxi?', 'es')">Ouvir Áudio</button>
                         </div>
                     </div>
                 </div>
@@ -562,141 +257,166 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Where is the cruise ship port?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where is the cruise ship port?" alt="QR Code Inglês">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where%20is%20the%20cruise%20ship%20port" alt="QR Code Inglês">
                             <button class="audio-btn" onclick="speakText('Where is the cruise ship port?', 'en')">Ouvir Áudio</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Wo ist der Kreuzfahrthafen?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo ist der Kreuzfahrthafen?" alt="QR Code Alemão">
+                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo%20ist%20der%20Kreuzfahrthafen" alt="QR Code Alemão">
                             <button class="audio-btn" onclick="speakText('Wo ist der Kreuzfahrthafen?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Où se trouve le port de croisière?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Où se trouve le port de croisière?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Où se trouve le port de croisière?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Dónde está el puerto de cruceros?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Dónde está el puerto de cruceros?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Dónde está el puerto de cruceros?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="phrase-card">
-                    <div class="portuguese">Pode me levar até este endereço?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Can you take me to this address?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Can you take me to this address?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Can you take me to this address?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Können Sie mich zu dieser Adresse bringen?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Können Sie mich zu dieser Adresse bringen?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Können Sie mich zu dieser Adresse bringen?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Pouvez-vous me conduire à cette adresse?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Pouvez-vous me conduire à cette adresse?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Pouvez-vous me conduire à cette adresse?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Puede llevarme a esta dirección?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Puede llevarme a esta dirección?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Puede llevarme to this address?', 'es')">Ouvir Áudio</button>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Hotel e Acomodações -->
-            <div class="category">
-                <div class="category-title">
-                    <i>🏨</i> Hotel e Acomodações
-                </div>
+        <div class="footer">
+            <p>Guia de Frases para Turistas - Use os QR codes para traduzir e ouvir as frases automaticamente</p>
+            <p>Este guia funciona mesmo sem conexão com a internet após carregado</p>
+        </div>
+    </div>
+
+    <script>
+        // Variável para controlar se o áudio já foi ativado
+        let audioEnabled = false;
+        
+        // Função para ativar o áudio (requer interação do usuário)
+        function enableAudio() {
+            if (!audioEnabled) {
+                // Simula uma fala muito curta para "desbloquear" o áudio
+                const utterance = new SpeechSynthesisUtterance('');
+                window.speechSynthesis.speak(utterance);
+                audioEnabled = true;
+                document.body.style.cursor = 'default';
                 
-                <div class="phrase-card">
-                    <div class="portuguese">Onde é a recepção?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Where is the reception?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where is the reception?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Where is the reception?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Wo ist die Rezeption?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo ist die Rezeption?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Wo ist die Rezeption?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Où est la réception?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Où est la réception?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Où est la réception?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Dónde está la recepción?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Dónde está la recepción?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Dónde está la recepción?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
+                // Remove o overlay de ativação se existir
+                const overlay = document.getElementById('audio-overlay');
+                if (overlay) {
+                    overlay.style.display = 'none';
+                }
+            }
+        }
+        
+        // Adiciona evento de clique para ativar áudio
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('touchstart', enableAudio);
+        
+        // Função para reproduzir texto em voz alta
+        function speakText(text, lang) {
+            if (!audioEnabled) {
+                alert('Por favor, clique em qualquer lugar da página para ativar o áudio primeiro.');
+                return;
+            }
+            
+            if ('speechSynthesis' in window) {
+                // Cancela qualquer fala anterior
+                window.speechSynthesis.cancel();
                 
-                <div class="phrase-card">
-                    <div class="portuguese">Pode me ajudar com a chave do quarto?</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="Can you help me with the room key?" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Can you help me with the room key?" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Can you help me with the room key?', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Können Sie mir mit dem Zimmerschlüssel helfen?" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Können Sie mir mit dem Zimmerschlüssel helfen?" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Können Sie mir mit dem Zimmerschlüssel helfen?', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="Pouvez-vous m'aider avec la clé de la chambre?" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Pouvez-vous m'aider avec la clé de la chambre?" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('Pouvez-vous m'aider avec la clé de la chambre?', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="¿Puede ayudarme con la llave de la habitación?" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=¿Puede ayudarme con la llave de la habitación?" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('¿Puede ayudarme con la llave de la habitación?', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
+                const utterance = new SpeechSynthesisUtterance(text);
                 
-                <div class="phrase-card">
-                    <div class="portuguese">Preciso de um elevador</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="I need an elevator" data-lang="en" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=I need an elevator" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('I need an elevator', 'en')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Alemão</div>
-                            <img class="qr-code" data-text="Ich brauche einen Aufzug" data-lang="de" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Ich brauche einen Aufzug" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Ich brauche einen Aufzug', 'de')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Francês</div>
-                            <img class="qr-code" data-text="J'ai besoin d'un ascenseur" data-lang="fr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=J'ai besoin d'un ascenseur" alt="QR Code Francês">
-                            <button class="audio-btn" onclick="speakText('J'ai besoin d'un ascenseur', 'fr')">Ouvir Áudio</button>
-                        </div>
-                        <div class="language">
-                            <div class="language-name">Espanhol</div>
-                            <img class="qr-code" data-text="Necesito un ascensor" data-lang="es" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Necesito un ascensor" alt="QR Code Espanhol">
-                            <button class="audio-btn" onclick="speakText('Necesito un ascensor', 'es')">Ouvir Áudio</button>
-                        </div>
-                    </div>
-                </div>
+                // Configura o idioma
+                switch(lang) {
+                    case 'en':
+                        utterance.lang = 'en-US';
+                        break;
+                    case 'de':
+                        utterance.lang = 'de-DE';
+                        break;
+                    case 'fr':
+                        utterance.lang = 'fr-FR';
+                        break;
+                    case 'es':
+                        utterance.lang = 'es-ES';
+                        break;
+                    default:
+                        utterance.lang = 'en-US';
+                }
                 
-                <div class="phrase-card">
-                    <div class="portuguese">Preciso de ajuda com a mala</div>
-                    <div class="translation">
-                        <div class="language">
-                            <div class="language-name">Inglês</div>
-                            <img class="qr-code" data-text="I need help with the luggage" data-lang="en" src="
+                utterance.rate = 0.9; // Velocidade um pouco mais lenta
+                utterance.pitch = 1; // Tom normal
+                utterance.volume = 1; // Volume máximo
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Seu navegador não suporta síntese de voz. Tente usar um navegador mais recente.');
+            }
+        }
+        
+        // Adicionando instruções de impressão
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @media print {
+                body {
+                    padding: 0;
+                    background: white;
+                }
+                .container {
+                    box-shadow: none;
+                    border-radius: 0;
+                }
+                .print-btn, .audio-btn {
+                    display: none;
+                }
+                .phrase-card {
+                    page-break-inside: avoid;
+                }
+            }
+            
+            #audio-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            #audio-overlay-content {
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                color: #333;
+                max-width: 80%;
+            }
+            
+            #activate-audio {
+                margin-top: 20px;
+                padding: 12px 25px;
+                background: #2c5fa8;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Adiciona overlay para ativar áudio
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.createElement('div');
+            overlay.id = 'audio-overlay';
+            overlay.innerHTML = `
+                <div id="audio-overlay-content">
+                    <h2>Ativação de Áudio</h2>
+                    <p>Para que o áudio funcione, é necessário interagir com a página primeiro.</p>
+                    <p>Clique no botão abaixo para ativar o áudio:</p>
+                    <button id="activate-audio" onclick="enableAudio()">Ativar Áudio</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            
+            // Altera o cursor para indicar que precisa clicar
+            document.body.style.cursor = 'pointer';
+        });
+    </script>
+</body>
+</html>
