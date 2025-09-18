@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Frases para Viagem - Áudio Funcional</title>
+    <title>Guia de Frases para Viagem</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
         body {
-            background: linear-gradient(135deg, #1e3d72 0%, #2c5fa8 100%);
+            background-color: #f0f8ff;
             color: #333;
             line-height: 1.6;
             padding: 20px;
-            min-height: 100vh;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         header {
@@ -39,7 +38,6 @@
         .subtitle {
             font-size: 18px;
             opacity: 0.9;
-            margin-bottom: 15px;
         }
         .instructions {
             background: #e8f4fc;
@@ -51,14 +49,44 @@
             margin-bottom: 15px;
             text-align: center;
         }
-        .phrases-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .instructions-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .instruction-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .instruction-card h3 {
+            color: #2c5fa8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .instruction-card h3 i {
+            margin-right: 10px;
+        }
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             padding: 25px;
+            justify-content: center;
         }
         .category {
-            margin-bottom: 30px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
         .category-title {
             background: #2c5fa8;
@@ -75,62 +103,51 @@
             font-size: 24px;
         }
         .phrase-card {
-            background: #f9f9f9;
+            background: white;
             border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .phrase-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         .portuguese {
             font-weight: bold;
             font-size: 18px;
             color: #2c5fa8;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px dashed #ccc;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #ccc;
         }
         .translation {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .language {
-            text-align: center;
             flex: 1;
-            padding: 0 10px;
+            min-width: 120px;
+            text-align: center;
+            padding: 10px;
+            background: #f0f8ff;
+            border-radius: 5px;
         }
         .language-name {
             font-size: 16px;
             color: #555;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-weight: bold;
-        }
-        .qr-code {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
-            display: block;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 8px;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .audio-btn {
             display: block;
-            margin: 10px auto 0;
-            padding: 8px 15px;
+            width: 100%;
+            padding: 10px;
             background: #2c5fa8;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             transition: background 0.3s;
+            margin-top: 5px;
         }
         .audio-btn:hover {
             background: #1e3d72;
@@ -141,9 +158,6 @@
             background: #2c5fa8;
             color: white;
             font-size: 16px;
-        }
-        .footer p {
-            margin-bottom: 10px;
         }
         .print-btn {
             display: block;
@@ -156,21 +170,16 @@
             cursor: pointer;
             font-size: 18px;
             transition: background 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         .print-btn:hover {
             background: #1e3d72;
-            transform: translateY(-2px);
         }
         @media (max-width: 768px) {
-            .phrases-container {
-                grid-template-columns: 1fr;
-            }
-            .translation {
+            .categories {
                 flex-direction: column;
             }
-            .language {
-                margin-bottom: 20px;
+            .category {
+                min-width: 100%;
             }
         }
     </style>
@@ -179,22 +188,30 @@
     <div class="container">
         <header>
             <h1>Guia de Frases para Viagem Internacional</h1>
-            <p class="subtitle">QR Codes com reprodução automática de áudio</p>
+            <p class="subtitle">Áudio em Português, Inglês, Alemão, Francês e Espanhol</p>
         </header>
 
         <div class="instructions">
             <h2>Como usar este guia</h2>
-            <p><strong>Para usar o áudio:</strong> Clique no botão "Ouvir Áudio" de qualquer frase. Em alguns navegadores, você precisará interagir com a página primeiro (como clicar em qualquer lugar) para que o áudio funcione.</p>
-            <p><strong>Para usar os QR codes:</strong> Aponte a câmera do seu celular para o QR code para acessar a tradução online.</p>
+            <div class="instructions-content">
+                <div class="instruction-card">
+                    <h3><i>🔊</i> Reprodução de Áudio</h3>
+                    <p>Clique em qualquer lugar da página para ativar o áudio primeiro, depois clique nos botões "Ouvir" para reproduzir as frases.</p>
+                </div>
+                <div class="instruction-card">
+                    <h3><i>💡</i> Dicas Importantes</h3>
+                    <p>Mantenha o volume em um nível confortável. Este guia funciona mesmo sem internet após carregado.</p>
+                </div>
+            </div>
         </div>
 
         <button class="print-btn" onclick="window.print()">Imprimir Guia</button>
 
-        <div class="phrases-container">
-            <!-- Cumprimentos e Saudações -->
+        <div class="categories">
+            <!-- Cumprimentos e Educação -->
             <div class="category">
                 <div class="category-title">
-                    <i>👋</i> Cumprimentos e Saudações
+                    <i>👋</i> Cumprimentos e Educação
                 </div>
                 
                 <div class="phrase-card">
@@ -202,13 +219,19 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Good%20morning" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Good morning', 'en')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Good morning', 'en')">Ouvir</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Guten%20Morgen" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Guten Morgen', 'de')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Guten Morgen', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Bonjour', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Buenos días', 'es')">Ouvir</button>
                         </div>
                     </div>
                 </div>
@@ -218,22 +241,116 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Good%20evening" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Good evening', 'en')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Good evening', 'en')">Ouvir</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Guten%20Abend" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Guten Abend', 'de')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Guten Abend', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Bonsoir', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Buenas noches', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('S\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Obrigado(a)</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Thank you', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Danke', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Merci', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Gracias', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Desculpe</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Excuse me', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Entschuldigung', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Excusez-moi', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Disculpe', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Você pode falar devagar?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Can you speak slowly?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Können Sie langsam sprechen?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Pouvez-vous parler lentement?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Puede hablar despacio?', 'es')">Ouvir</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Direções e Locomoção -->
+            <!-- Direções e Orientação -->
             <div class="category">
                 <div class="category-title">
-                    <i>🧭</i> Direções e Locomoção
+                    <i>🧭</i> Direções e Orientação
                 </div>
                 
                 <div class="phrase-card">
@@ -241,13 +358,107 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where%20is%20the%20bathroom" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Where is the bathroom?', 'en')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Where is the bathroom?', 'en')">Ouvir</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo%20ist%20die%20Toilette" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Wo ist die Toilette?', 'de')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Wo ist die Toilette?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où sont les toilettes?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está el baño?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Pode me mostrar no mapa?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Can you show me on the map?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Können Sie mir das auf der Karte zeigen?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Pouvez-vous me montrer sur la carte?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Puede mostrarme en el mapa?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Onde está o ponto de ônibus?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Where is the bus stop?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Wo ist die Bushaltestelle?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où est l\'arrêt de bus?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está la parada de autobús?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Onde está a estação de trem?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Where is the train station?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Wo ist der Bahnhof?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où est la gare?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está la estación de tren?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Onde está o ponto de táxi?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Where is the taxi stand?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Wo ist der Taxistand?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où est la station de taxi?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está la parada de taxi?', 'es')">Ouvir</button>
                         </div>
                     </div>
                 </div>
@@ -257,13 +468,487 @@
                     <div class="translation">
                         <div class="language">
                             <div class="language-name">Inglês</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Where%20is%20the%20cruise%20ship%20port" alt="QR Code Inglês">
-                            <button class="audio-btn" onclick="speakText('Where is the cruise ship port?', 'en')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Where is the cruise ship port?', 'en')">Ouvir</button>
                         </div>
                         <div class="language">
                             <div class="language-name">Alemão</div>
-                            <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Wo%20ist%20der%20Kreuzfahrthafen" alt="QR Code Alemão">
-                            <button class="audio-btn" onclick="speakText('Wo ist der Kreuzfahrthafen?', 'de')">Ouvir Áudio</button>
+                            <button class="audio-btn" onclick="speakText('Wo ist der Kreuzfahrthafen?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où se trouve le port de croisière?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está el puerto de cruceros?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Pode me levar até este endereço?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Can you take me to this address?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Können Sie mich zu dieser Adresse bringen?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Pouvez-vous me conduire à cette adresse?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Puede llevarme a esta dirección?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel e Acomodações -->
+            <div class="category">
+                <div class="category-title">
+                    <i>🏨</i> Hotel e Acomodações
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Onde é a recepção?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Where is the reception?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Wo ist die Rezeption?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où est la réception?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está la recepción?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Pode me ajudar com a chave do quarto?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Can you help me with the room key?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Können Sie mir mit dem Zimmerschlüssel helfen?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Pouvez-vous m\'aider avec la clé de la chambre?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Puede ayudarme con la llave de la habitación?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Preciso de um elevador</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I need an elevator', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ich brauche einen Aufzug', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('J\'ai besoin d\'un ascenseur', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Necesito un ascensor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Preciso de ajuda com a mala</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I need help with the luggage', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ich brauche Hilfe mit dem Gepäck', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('J\'ai besoin d\'aide avec les bagages', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Necesito ayuda con el equipaje', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alimentação -->
+            <div class="category">
+                <div class="category-title">
+                    <i>🍽️</i> Alimentação
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Quero o cardápio, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I would like the menu, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ich hätte gerne die Speisekarte, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Je voudrais le menu, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Quiero el menú, por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Sem sal, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('No salt, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ohne Salz, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Sans sel, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Sin sal, por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Sem açúcar, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('No sugar, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ohne Zucker, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Sans sucre, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Sin azúcar, por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Sem pimenta, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('No pepper, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ohne Pfeffer, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Sans poivre, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Sin pimienta, por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Um copo de água, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('A glass of water, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ein Glas Wasser, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Un verre d\'eau, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Un vaso de agua, por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">A conta, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('The check, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Die Rechnung, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('L\'addition, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('La cuenta, por favor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saúde e Emergências -->
+            <div class="category">
+                <div class="category-title">
+                    <i>💊</i> Saúde e Emergências
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Preciso de um médico</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I need a doctor', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ich brauche einen Arzt', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('J\'ai besoin d\'un médecin', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Necesito un médico', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Estou passando mal</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I am feeling sick', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Mir ist übel', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Je me sens mal', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Me siento mal', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Onde fica a farmácia?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Where is the pharmacy?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Wo ist die Apotheke?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Où est la pharmacie?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Dónde está la farmacia?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Preciso de remédio para dor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I need pain medication', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ich brauche Schmerzmittel', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('J\'ai besoin de médicaments contre la douleur', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Necesito medicina para el dolor', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Chame a polícia</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Call the police', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Rufen Sie die Polizei', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Appelez la police', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Llame a la policía', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Chame uma ambulância</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Call an ambulance', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Rufen Sie einen Krankenwagen', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Appelez une ambulance', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Llame una ambulancia', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compras e Pagamentos -->
+            <div class="category">
+                <div class="category-title">
+                    <i>💵</i> Compras e Pagamentos
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Quanto custa isso?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('How much does this cost?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Wie viel kostet das?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Combien ça coûte?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Cuánto cuesta esto?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Aceita cartão de crédito?</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('Do you accept credit cards?', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Akzeptieren Sie Kreditkarten?', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('Acceptez-vous les cartes de crédit?', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('¿Aceptan tarjetas de crédito?', 'es')">Ouvir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="phrase-card">
+                    <div class="portuguese">Preciso de recibo, por favor</div>
+                    <div class="translation">
+                        <div class="language">
+                            <div class="language-name">Inglês</div>
+                            <button class="audio-btn" onclick="speakText('I need a receipt, please', 'en')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Alemão</div>
+                            <button class="audio-btn" onclick="speakText('Ich brauche eine Quittung, bitte', 'de')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Francês</div>
+                            <button class="audio-btn" onclick="speakText('J\'ai besoin d\'un reçu, s\'il vous plaît', 'fr')">Ouvir</button>
+                        </div>
+                        <div class="language">
+                            <div class="language-name">Espanhol</div>
+                            <button class="audio-btn" onclick="speakText('Necesito un recibo, por favor', 'es')">Ouvir</button>
                         </div>
                     </div>
                 </div>
@@ -271,7 +956,7 @@
         </div>
 
         <div class="footer">
-            <p>Guia de Frases para Turistas - Use os QR codes para traduzir e ouvir as frases automaticamente</p>
+            <p>Guia de Frases para Turistas - Use os botões para ouvir as frases automaticamente</p>
             <p>Este guia funciona mesmo sem conexão com a internet após carregado</p>
         </div>
     </div>
@@ -408,8 +1093,7 @@
                 <div id="audio-overlay-content">
                     <h2>Ativação de Áudio</h2>
                     <p>Para que o áudio funcione, é necessário interagir com a página primeiro.</p>
-                    <p>Clique no botão abaixo para ativar o áudio:</p>
-                    <button id="activate-audio" onclick="enableAudio()">Ativar Áudio</button>
+                    <p>Clique em qualquer lugar da página para ativar o áudio:</p>
                 </div>
             `;
             document.body.appendChild(overlay);
